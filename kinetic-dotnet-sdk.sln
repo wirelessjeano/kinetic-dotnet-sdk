@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kinetic.Sdk", "Kinetic.Sdk\Kinetic.Sdk.csproj", "{462C530B-DEB2-4A4F-B272-116546CD9D63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kinetic.Tests", "Kinetic.Tests\Kinetic.Tests.csproj", "{8B0D2445-3F04-458C-8B59-57638028FDB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kinetic.Example", "Kinetic.Example\Kinetic.Example.csproj", "{FD97E95F-BA34-4A91-831E-BC024093DA8E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{462C530B-DEB2-4A4F-B272-116546CD9D63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{462C530B-DEB2-4A4F-B272-116546CD9D63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{462C530B-DEB2-4A4F-B272-116546CD9D63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{462C530B-DEB2-4A4F-B272-116546CD9D63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B0D2445-3F04-458C-8B59-57638028FDB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B0D2445-3F04-458C-8B59-57638028FDB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B0D2445-3F04-458C-8B59-57638028FDB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B0D2445-3F04-458C-8B59-57638028FDB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD97E95F-BA34-4A91-831E-BC024093DA8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD97E95F-BA34-4A91-831E-BC024093DA8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD97E95F-BA34-4A91-831E-BC024093DA8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD97E95F-BA34-4A91-831E-BC024093DA8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
