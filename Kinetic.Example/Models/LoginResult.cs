@@ -7,5 +7,5 @@ public class LoginResult
 {
     public String SecretKey { get; set; }
     
-    public String Mnemonics { get; set; }
+    public string? Mnemonics { get; set; }
 }

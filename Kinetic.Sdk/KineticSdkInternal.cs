@@ -13,7 +13,7 @@ namespace Kinetic.Sdk
 {
     internal static class Constants
     {
-        public const string Name = "Kinetic Unity SDK";
+        public const string Name = "Kinetic Dotnet SDK";
         public const string Version = "1.0.0-rc.12";
     }
 

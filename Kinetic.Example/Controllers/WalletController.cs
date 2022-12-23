@@ -12,16 +12,10 @@ public class WalletController : ControllerBase
     private KineticSdk KineticSdk { get; set; }
     
     private ILogger<WalletController> Logger  { get; set; }
-    public WalletController(ILogger<WalletController> logger)
+    public WalletController(ILogger<WalletController> logger, KineticSdk kineticSdk)
     {
         Logger = logger;
-        KineticSdk = KineticSdk.Setup(
-            new KineticSdkConfig(
-                index: Kinetic.Example.Constants.Index,
-                endpoint: Kinetic.Example.Constants.Endpoint,
-                environment: Kinetic.Example.Constants.Environment,
-                logger: logger
-            ));
+        KineticSdk = kineticSdk;
     }
     
    [HttpPost("GetBalance")]
@@ -29,7 +23,8 @@ public class WalletController : ControllerBase
     {
         Keypair keypair = Utility.GetKeyPair(keyOrMnemonics);
 
-        return await _getBalance(keypair);
+        var balanceResult = await _getBalance(keypair);
+        return Ok(balanceResult);
     }
 
     
@@ -49,6 +44,7 @@ public class WalletController : ControllerBase
     public async Task<IActionResult> GetHistory([FromBody] KeyOrMnemonics keyOrMnemonics)
     {
         Keypair keypair = Utility.GetKeyPair(keyOrMnemonics);
+        
         var history =  await KineticSdk.GetHistory( account: keypair.PublicKey );
         return Ok(history);
     }
@@ -60,12 +56,13 @@ public class WalletController : ControllerBase
         
         try
         {
-            await KineticSdk.RequestAirdrop(
+            var airDropResponse = await KineticSdk.RequestAirdrop(
                 account: keypair.PublicKey,
                 amount: "1000"
             );
             
-            return await _getBalance(keypair);
+            var balanceResult = await _getBalance(keypair);
+            return Ok(new {balanceResult, airDropResponse});
         }
         catch (Exception e)
         {
@@ -81,9 +78,11 @@ public class WalletController : ControllerBase
     {
         Keypair keypair = Utility.GetKeyPair(transferRequest);
         
+
         try
         {
-            await KineticSdk.MakeTransfer(
+            
+            var transaction = await KineticSdk.MakeTransfer(
                 amount: transferRequest.Amount,
                 destination: transferRequest.Destination,
                 owner: keypair,
@@ -91,7 +90,8 @@ public class WalletController : ControllerBase
                 senderCreate: true
             );
            
-            return await _getBalance(keypair);
+            var balanceResult = await _getBalance(keypair);
+            return Ok(new {balanceResult, transaction});
         }
         catch (Exception e)
         {
@@ -102,7 +102,7 @@ public class WalletController : ControllerBase
 
     }
     
-    private async Task<IActionResult> _getBalance(Keypair keypair)
+    private async Task<BalanceResult> _getBalance(Keypair keypair)
     {
         var balance = await KineticSdk.GetBalance(account: keypair.PublicKey);
 
@@ -111,7 +111,7 @@ public class WalletController : ControllerBase
             Balance = (float.Parse(balance.Balance) / Math.Pow(10, 5)).ToString("0.00") + " KIN"
         };
 
-        return Ok(balanceResult);
+        return balanceResult;
     }
 
 }

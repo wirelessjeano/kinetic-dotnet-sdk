@@ -11,15 +11,9 @@ public class GameController : ControllerBase
 {
     private KineticSdk KineticSdk { get; set; }
 
-    public GameController(ILogger<GameController> logger)
+    public GameController(ILogger<GameController> logger, KineticSdk kineticSdk)
     {
-        KineticSdk = KineticSdk.Setup(
-            new KineticSdkConfig(
-                index: Kinetic.Example.Constants.Index,
-                endpoint: Kinetic.Example.Constants.Endpoint,
-                environment: Kinetic.Example.Constants.Environment,
-                logger: logger
-            ));
+        KineticSdk = kineticSdk;
     }
 
     [HttpGet("CreateNewAccount")]
@@ -40,14 +34,12 @@ public class GameController : ControllerBase
     [HttpPost("Login")]
     public async Task<IActionResult> Login([FromBody] KeyOrMnemonics keyOrMnemonics)
     {
-      
-
         Keypair keypair = Utility.GetKeyPair(keyOrMnemonics);
 
         var loginResult = new LoginResult
         {
             SecretKey = keypair.SecretKey,
-            Mnemonics = keypair.Mnemonic.ToString(),
+            Mnemonics = keypair.Mnemonic?.ToString() ?? null,
         };
 
         return Ok(loginResult);

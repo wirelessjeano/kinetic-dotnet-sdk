@@ -35,7 +35,8 @@ namespace Kinetic.Sdk
         /// Solana Secret Key
         /// </summary>
         public PrivateKey SecretKey => Solana.PrivateKey;
-
+        
+        
         /// <summary>
         /// Create a Keypair
         /// </summary>

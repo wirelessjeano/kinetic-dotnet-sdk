@@ -12,7 +12,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+builder.Services.AddSingleton(factory => KineticSdk.Setup(
+    new KineticSdkConfig(
+        index:  Kinetic.Example.Constants.Index,
+        endpoint: Kinetic.Example.Constants.Endpoint,
+        environment: Kinetic.Example.Constants.Environment,
+        logger: (factory.GetService<ILogger>() ?? NullLogger.Instance)
+    )));
 
 var app = builder.Build();
 
