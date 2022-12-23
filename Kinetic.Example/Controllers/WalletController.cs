@@ -108,7 +108,7 @@ public class WalletController : ControllerBase
 
         var balanceResult = new BalanceResult
         {
-            Balance = (float.Parse(balance.Balance) / Math.Pow(10, 5)).ToString("0.00") + " KIN"
+            Balance = balance.Balance
         };
 
         return balanceResult;

@@ -4,6 +4,10 @@
         <TargetFramework>net7.0</TargetFramework>
         <LangVersion>9</LangVersion>
         <Nullable>enable</Nullable>
+        <PackageId>Kinetic.Dotnet.SDK</PackageId>
+        <Version>1.0.0</Version>
+        <Description>A port of the Kinetic-Unity-SDK. The SDK acts as an interface to communicate with the Kinetic API, which handles the fee payment. This is done by partially signing the transaction on the device, and sending that over to the Kinetic API.</Description>
+        <IsPackable>true</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
